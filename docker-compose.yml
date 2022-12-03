@@ -1,0 +1,50 @@
+version: "2"
+networks:
+  myApp:
+    driver: bridge
+volumes:
+  myVolume:
+
+services:
+  provider:
+    build:
+      context: ./dubbo-provider/
+      dockerfile: Dockerfile
+    image: zhuoli02/dubbo-provider:1.8
+    ports:
+      - 3000:8011
+    networks:
+      - myApp
+    volumes:
+      - myVolume:/Users/zhuoli/docker
+    depends_on:
+      - zookeeper
+  consumer:
+    build:
+      context: ./dubbo-consumer/
+      dockerfile: Dockerfile
+    image: zhuoli02/dubbo-consumer:1.1
+    ports:
+      - 3001:8011
+    networks:
+      - myApp
+    volumes:
+      - myVolume:/Users/zhuoli/docker
+    depends_on:
+      - zookeeper
+      - provider
+
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    ports:
+      - '2180:2180'
+    networks:
+      - myApp
+    volumes:
+      - myVolume:/Users/zhuoli/docker
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - ZOO_TLS_CLIENT_ENABLE=yes
+      - ZOO_PORT_NUMBER=2180
+      - ALLOW_ANONYMOUS_LOGIN=yes
+      - ZOO_SERVER_ID=1

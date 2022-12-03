@@ -1,0 +1,14 @@
+server:
+  port: 8012
+pulsar:
+  # ??????
+  namespace: tk-open-platform-payment
+  # ??????
+  service-url: http://pulsar-9n85kpk4rr79.tdmq.ap-bj.public.tencenttdmq.com:8080
+  # ??????
+  token-auth-value: eyJrZXlJZCI6InB1bHNhci05bjg1a3BrNHJyNzkiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwdWxzYXItOW44NWtwazRycjc5X3poaXlpbmcifQ.QBx6kdX51IaaxJBYibIxqtFjtJMfu26LJ90GCIB1vUA
+  # ?? ID
+  tenant: pulsar-9n85kpk4rr79
+  consumer:
+    default:
+  allow-interceptor: true

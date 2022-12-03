@@ -1,34 +1,33 @@
 package com.minbo.dubbo.consumer;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import com.alibaba.fastjson.JSONObject;
-import com.minbo.dubbo.provider.DemoService;
 
-import org.springframework.web.bind.annotation.PathVariable;  
-import org.springframework.web.bind.annotation.RequestMapping;  
-import org.springframework.web.bind.annotation.ResponseBody; 
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 测试用的 Controller 类；
  */
 @Controller
 public class TestController {
-	
-	@Autowired
-	DemoService demoService;
 
 	/**
 	 * 测试 JSON 接口；
-	 * @param name 名字
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/test/{name}")
-	public JSONObject testJson(@PathVariable("name") String name) {
-		JSONObject jsonObject = new JSONObject();
-		String testStr = demoService.sayHello(name);
-		jsonObject.put("str", testStr);
-		return jsonObject;
+
+	@RequestMapping("/test/pulsar/{message}")
+	public void testPulsar(@PathVariable("message") String message) {
+		System.out.println(message);
+	}
+
+	@ResponseBody
+	@RequestMapping("/test/pulsar/deliver/{message}")
+	public void testPulsarDeliver(@PathVariable("message") String message) {
+//		PaymentMessage paymentMessage = new PaymentMessage();
+//		paymentMessage.setMessage(message);
+		//producer.deliver("payment-topic", paymentMessage, );
 	}
 }

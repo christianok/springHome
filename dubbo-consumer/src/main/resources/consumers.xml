@@ -11,9 +11,14 @@
 	<dubbo:application name="dubbo-consumer" owner="dubbo-consumer" />
 	
 	<!-- 定义 zookeeper 注册中心地址及协议 -->
-	<dubbo:registry protocol="zookeeper" address="192.168.0.146:2181" client="zkclient" />
+	<dubbo:registry protocol="zookeeper" address="zookeeper" client="zkclient" check="false"/>
 	
 	<!-- 生成远程服务代理，可以和本地 bean 一样使用 testService -->
-	<dubbo:reference id="demoService" interface="com.minbo.dubbo.provider.DemoService" />
-	
+	<dubbo:reference id="demoService" interface="com.minbo.dubbo.provider.service.inf.DemoService" check="false" mock="return null"/>
+
+	<dubbo:reference id="TestService" interface="com.minbo.dubbo.provider.service.inf.TestService" check="false" retries="3" mock="return null">
+		<dubbo:method name="doing" timeout="1000" />
+	</dubbo:reference>
+
+	<dubbo:consumer timeout="1000"/>
 </beans>
