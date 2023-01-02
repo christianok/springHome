@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.*;
+
 @SpringBootTest
 public class DubboConsumerApplicationTests {
 	@Autowired
@@ -14,6 +16,7 @@ public class DubboConsumerApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
 	}
 
 	@Test
@@ -21,5 +24,14 @@ public class DubboConsumerApplicationTests {
 		String hello = "hello";
 		System.out.println(hello);
 		assert "hello".equals(hello);
+	}
+
+	@Test
+	public void testCollection(){
+		List<String> list = new ArrayList<String>();
+		list.add("java");
+		list.add("learning");
+		System.out.println(list.size());
+		//Map<String, String> hashmap = new HashMap<String, String>();
 	}
 }

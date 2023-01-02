@@ -1,4 +1,4 @@
-package com.minbo.dubbo.consumer;
+package com.minbo.dubbo.consumer.controller;
 
 import org.springframework.stereotype.Controller;
 
